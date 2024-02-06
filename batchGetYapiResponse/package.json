@@ -1,0 +1,19 @@
+{
+  "name": "koa",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "getResData": "node getResData/index.js"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "ejs": "^3.1.8",
+    "json-schema-to-typescript": "^9.1.1",
+    "pug": "^2.0.3",
+    "request": "^2.88.2",
+    "rxjs": "^6.6.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

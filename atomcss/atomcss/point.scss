@@ -1,0 +1,14 @@
+@import "../var.scss";
+
+// 圆点
+@each $wh in 4, 6, 8, 12, 16, 20, 24, 28, 32, 36, 40 {
+    .point-#{$wh} {
+        display: inline-block;
+        width: #{$wh}px;
+        height: #{$wh}px;
+        border-radius: #{$wh}px;
+        background: $--color-danger;
+        text-align: center;
+        line-height: #{$wh}px;
+    }
+}

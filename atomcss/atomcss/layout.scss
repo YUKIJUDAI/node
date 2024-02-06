@@ -1,0 +1,51 @@
+@import "../var.scss";
+
+// layout
+$layoutValueList: 0, 4, 6, 8, 10, 12, 16, 20, 24, 28, 32, 36, 40, 48, 60, 72, 80;
+$layoutTypeList: l, r, t, b, x, y;
+$x: left, right;
+$y: top, bottom;
+$layoutTypeMap: (
+    l: left,
+    r: right,
+    t: top,
+    b: bottom,
+    x: $x,
+    y: $y,
+);
+
+@each $layoutValue in $layoutValueList {
+    @each $layoutType in $layoutTypeList {
+        .m#{$layoutType}-#{$layoutValue} {
+            @each $value in map-get($layoutTypeMap, $layoutType) {
+                margin-#{$value}: #{$layoutValue}px;
+            }
+        }
+        .p#{$layoutType}-#{$layoutValue} {
+            @each $value in map-get($layoutTypeMap, $layoutType) {
+                padding-#{$value}: #{$layoutValue}px;
+            }
+        }
+    }
+    .m-#{$layoutValue} {
+        margin-left: #{$layoutValue}px;
+        margin-right: #{$layoutValue}px;
+        margin-top: #{$layoutValue}px;
+        margin-bottom: #{$layoutValue}px;
+    }
+    .p-#{$layoutValue} {
+        padding-left: #{$layoutValue}px;
+        padding-right: #{$layoutValue}px;
+        padding-top: #{$layoutValue}px;
+        padding-bottom: #{$layoutValue}px;
+    }
+}
+
+// position
+$positions: absolute, relative, fixed, static;
+
+@each $position in $positions {
+    .#{$position} {
+        position: $position;
+    }
+}

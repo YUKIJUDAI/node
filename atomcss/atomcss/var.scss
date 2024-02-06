@@ -1,0 +1,19 @@
+$--color-theme: #409eff;
+$--color-success: #67c23a;
+$--color-warning: #e6a23c;
+$--color-danger: #f56c6c;
+$--color-info: #909399;
+$--color-white: #fff;
+
+$colorList: theme, success, warning, danger, info, "white";
+
+$colorMap: (
+    theme: $--color-theme,
+    success: $--color-success,
+    warning: $--color-warning,
+    danger: $--color-danger,
+    info: $--color-info,
+    "white": $--color-white
+);
+
+$--border-color-base: #e0e0e0

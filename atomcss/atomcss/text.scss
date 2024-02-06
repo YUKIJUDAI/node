@@ -1,0 +1,78 @@
+@import "../var";
+
+$fontWeightName: null;
+$fontSizeName: null;
+$fontColorName: null;
+
+// font
+$fontSizeList: 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 46, 56, 68, none;
+$fontWeightList: normal, medium, bold, none;
+$fontColorList: primary, sub, tip, theme, "white", disable, "red", "orange", "green", blue-light, theme--true;
+$fontWeightMap: (
+    normal: 400,
+    medium: 500,
+    bold: 700,
+);
+
+@each $fontSize in $fontSizeList {
+    $textName: text;
+    @if $fontSize == none {
+        $fontSizeName: $textName !global;
+        .#{$fontSizeName} {
+            line-height: 1.5;
+        }
+    } @else {
+        $fontSizeName: $textName + "-" + $fontSize !global;
+        .#{$fontSizeName} {
+            font-size: #{$fontSize}px;
+            line-height: 1.5;
+        }
+    }
+    @each $fontWeight in $fontWeightList {
+        @if $fontWeight == none {
+            $fontWeightName: $fontSizeName !global;
+        } @else {
+            $fontWeightName: $fontSizeName + "-" + $fontWeight !global;
+            .#{$fontWeightName} {
+                @extend .#{$fontSizeName};
+                font-weight: map-get($fontWeightMap, $fontWeight);
+            }
+        }
+        @each $fontColor in $colorList {
+            $fontColorName: $fontWeightName + "-" + $fontColor !global;
+            .#{$fontColorName} {
+                @extend .#{$fontWeightName};
+                color: map-get($colorMap, $fontColor);
+            }
+        }
+    }
+}
+
+//文字链接
+.text-link {
+    color: $--color-primary;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+//文字画线价
+.text-line-through {
+    text-decoration: line-through;
+}
+.text-through {
+    text-decoration: line-through;
+}
+.line-through {
+    text-decoration: line-through;
+}
+//文本底线
+.text-underline {
+    text-decoration: underline;
+}
+//文本断行
+.break-all {
+    word-break: break-all;
+}

@@ -1,0 +1,85 @@
+@import "../var.scss";
+
+// display
+$displayList: none, block, inline, inline-block;
+
+@each $display in $displayList {
+    .#{$display} {
+        display: $display;
+    }
+}
+
+//宽高
+$specialWidthList: 0, 4, 6, 8, 10, 12, 16, 20, 24, 28, 32, 36, 40, 48, 60, 80, 100, 120, 136, 160, 300;
+@each $specialWidth in $specialWidthList {
+    .w-#{$specialWidth} {
+        width: #{$specialWidth}px;
+    }
+    .h-#{$specialWidth} {
+        height: #{$specialWidth}px;
+    }
+    .square-#{$specialWidth} {
+        width: #{$specialWidth}px;
+        height: #{$specialWidth}px;
+    }
+}
+
+.w-full {
+    width: 100%;
+}
+.h-full {
+    height: 100%;
+}
+.full {
+    width: 100%;
+    height: 100%;
+}
+
+//边框圆角
+$borderRadiusList: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+@each $radiusSize in $borderRadiusList {
+    .radius-#{$radiusSize} {
+        border-radius: #{$radiusSize}px;
+    }
+}
+.radius-50 {
+    border-radius: 50%;
+}
+.radius-none {
+    border-radius: none;
+}
+
+//border
+$borderDirections: l, t, r, b;
+$layoutTypeMap: (
+    l: left,
+    r: right,
+    t: top,
+    b: bottom,
+);
+
+.br {
+    border: 1px solid $--border-color-base;
+}
+.br-dashed {
+    border: 1px dashed $--border-color-base;
+}
+@each $borderDirection in $borderDirections {
+    $borderDirectionFull: map-get($layoutTypeMap, $borderDirection);
+    .br-#{$borderDirection}-dashed {
+        border-#{$borderDirectionFull}: 1px dashed $--border-color-base;
+    }
+    .br-#{$borderDirection} {
+        border-#{$borderDirectionFull}: 1px solid $--border-color-base;
+    }
+}
+.br-theme {
+    border: 1px solid $--color-theme;
+}
+.br-hover {
+    @extend .br;
+    cursor: pointer;
+    &:hover {
+        @extend .br-theme;
+    }
+}

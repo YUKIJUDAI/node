@@ -1,0 +1,58 @@
+@import "../var.scss";
+
+// text-align
+$textAlignList: center, left, right;
+
+@each $textAlign in $textAlignList {
+    .text-#{$textAlign} {
+        text-align: $textAlign;
+    }
+}
+// vertical-align
+$verticalAlignList: middle, top, baseline, bottom, text-top, text-bottom;
+
+@each $verticalAlign in $verticalAlignList {
+    .vertical-#{$verticalAlign} {
+        vertical-align: $verticalAlign;
+    }
+}
+// ellipsis
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.ellipsis-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+}
+
+// overflow
+$overflowTypeName: null;
+$overflowTypeList: hidden, auto, visible;
+
+@each $overflowType in $overflowTypeList {
+    $overflowName: overflow;
+    $overflowTypeName: $overflowName + "-" + $overflowType !global;
+    .#{$overflowTypeName} {
+        overflow: $overflowType;
+    }
+}
+
+//鼠标样式
+.pointer {
+    cursor: pointer;
+}
+.cursor {
+    color: $--color-primary;
+    cursor: pointer;
+}
+.not-allowed {
+    cursor: not-allowed;
+}
+//处理空白
+.white-space-pre {
+    white-space: pre;
+}

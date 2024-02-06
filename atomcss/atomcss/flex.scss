@@ -1,0 +1,83 @@
+@import "../var.scss";
+
+$flexColumnName: null;
+$flexJustifyName: null;
+$flexName: null;
+$flexJustifyName: null;
+$flexWrapName: null;
+
+// flex
+$justifyContentList: start, end, between, around, center;
+$justifyContentMap: (
+    start: flex-start,
+    end: flex-end,
+    between: space-between,
+    around: space-around,
+    center: center,
+);
+$alignItemsList: start, end, center, stretch;
+$alignItemsMap: (
+    start: flex-start,
+    end: flex-end,
+    stretch: stretch,
+    center: center,
+);
+$flexDirectionList: row, column;
+$flexWrapList: nowrap, wrap;
+@each $flexDirection in $flexDirectionList {
+    $flexName: flex !global;
+    @if $flexDirection == column {
+        $flexColumnName: $flexName + -column !global;
+        .#{$flexColumnName} {
+            display: flex;
+            flex-direction: column;
+        }
+    } @else {
+        $flexColumnName: $flexName !global;
+        .#{$flexColumnName} {
+            display: flex;
+        }
+    }
+    @each $flexWrap in $flexWrapList {
+        @if $flexWrap == wrap {
+            .#{$flexColumnName + -wrap} {
+                @extend .#{$flexColumnName};
+                flex-wrap: wrap;
+            }
+            $flexWrapName: $flexColumnName + -wrap !global;
+        } @else {
+            $flexWrapName: $flexColumnName !global;
+        }
+        @each $justifyContent in $justifyContentList {
+            .#{$flexWrapName + "-" + $justifyContent} {
+                @extend .#{$flexWrapName};
+                justify-content: map-get($justifyContentMap, $justifyContent);
+            }
+            $flexJustifyName: $flexWrapName + "-" + $justifyContent !global;
+            @each $alignItems in $alignItemsList {
+                .#{$flexJustifyName + "-" + $alignItems} {
+                    @extend .#{$flexJustifyName};
+                    align-items: map-get($alignItemsMap, $alignItems);
+                }
+            }
+        }
+    }
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+$flexNumList: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+@each $flexNum in $flexNumList {
+    .flex-#{$flexNum} {
+        flex: $flexNum;
+    }
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+.flex-no-shrink {
+    flex-shrink: 0;
+}

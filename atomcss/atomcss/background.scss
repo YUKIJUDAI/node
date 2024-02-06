@@ -1,0 +1,11 @@
+@import "../var.scss";
+
+$backgroundColorName: null;
+
+@each $backgroundColor in $colorList {
+    $bgName: bg;
+    $backgroundColorName: $bgName + "-" + $backgroundColor !global;
+    .#{$backgroundColorName} {
+        background: map-get($colorMap, $backgroundColor);
+    }
+}

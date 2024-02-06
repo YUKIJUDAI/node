@@ -1,0 +1,10 @@
+<% list.forEach(api => { %>
+<% if ( api.req_body_other ) { %>
+//  <%= api.name %>参数类型
+<%- api.req_body_other %> 
+<% } %> 
+<% if ( api.res_body ) { %>
+//  <%= api.name %>返回参数类型
+<%- api.res_body %>     
+<% } %>
+<% }) %>  

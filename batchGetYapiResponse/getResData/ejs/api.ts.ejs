@@ -1,0 +1,9 @@
+import {<% list.forEach(api => { %>
+    <% if (api.req_body_other) {%><%= api.Path %>ParamsClass, <% } %>
+    <% if (api.res_body) {%><%= api.Path %>Type, <% } %>
+<% }) %>} from "./type"
+<% list.forEach(api => { %>
+//  <%= api.name %>
+export const <%= api._path %>Api = (<% if (api.req_body_other) {%>data:<%= api.Path %>ParamsClass<% } %>) =>
+    window.http.<%= api.method %><httpResponse<<%= api.res_body ? api.Path + 'Type' : 'any' %>>>('<%= api.path %>'<% if (api.req_body_other) {%>, data<% } %>);
+<% }) %>
